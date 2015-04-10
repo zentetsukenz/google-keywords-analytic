@@ -1,0 +1,41 @@
+<div class="register-panel panel panel-info">
+  <div class="panel-heading">
+      <h3 class="panel-title text-center">Tell us about yourself</h3>
+  </div>
+  <div class="panel-body">
+
+    <% flash.each do |name, msg| -%>
+      <div class="alert alert-danger alert-dismissable">
+        <%= msg %>
+      </div>
+    <% end -%>
+
+    <%= form_tag('/authentication/register', method: 'post', role: 'form') do %>
+      <fieldset>
+        <div class="form-group">
+          <input  class="form-control" placeholder="Username" 
+                  name="user[username]" type="text"
+                  required>
+        </div>
+        <div class="form-group">
+          <input  class="form-control" placeholder="Password" 
+                  name="user[password]" type="password"
+                  required>
+        </div>
+        <div class="form-group">
+          <input  class="form-control" placeholder="Confirm password" 
+                  name="user[password_confirmation]" type="password"
+                  required>
+        </div>
+        <button   type="submit" class="btn btn-lg btn-success btn-block">
+          <i class="glyphicon glyphicon-edit"></i> Sign up
+        </button>
+      </fieldset>
+    <% end %>
+
+  </div>
+
+  <p class="text-center">
+    <small>I'm already a member, <a href="/authentication">Go back</a>.</small>
+  </p>
+</div>
