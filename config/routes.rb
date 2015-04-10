@@ -3,6 +3,13 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  # 
+  
+  get 'authentication' => 'authentication#index'
+  get 'authentication/new' => 'authentication#new'
+  post 'authentication' => 'authentication#signin'
+  post 'authentication/register' => 'authentication#register'
+  delete 'authentication' => 'authentication#signout'
 
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
