@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: google-keywords-analytic_production
-  username: google-keywords-analytic
-  password: <%= ENV['GOOGLE-KEYWORDS-ANALYTIC_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
