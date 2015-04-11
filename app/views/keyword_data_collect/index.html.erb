@@ -1,0 +1,93 @@
+<div ng-app="keywordAnalyticApp">
+  <div ng-controller="UploadCtrl">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+          <h3 class="panel-title text-center">Upload keywords</h3>
+      </div>
+      <div class="panel-body">
+
+        <form role="form">
+          <fieldset>
+            <div class="form-group">
+              <input  class="form-control" name="file" type="file"
+                      ng-file-select
+                      ng-model="file"
+                      ng-file-change="fileChange($files, $event)"
+                      accept=".csv">
+              <small class="help-block"><span class="text-danger">*</span> Accepts CSV file only</small>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" ng-disabled="!file || progress.isUploading" ng-click="upload(file)">
+              <i class="glyphicon glyphicon-cloud-upload"></i> Upload
+            </button>
+          </fieldset>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="progress" ng-show="progress.isUploading">
+      <div class="progress-bar" role="progressbar"
+            ng-class="{'progress-bar-info': progress.status === statusMaster.uploading || progress.status === statusMaster.build, 'progress-bar-success': progress.status === statusMaster.done, 'progress-bar-danger': progress.status === statusMaster.error}"
+            ng-style="{width: progress.uploadProgress + '%'}">
+        <span>{{progress.uploadProgress}}% {{progress.status}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  var app = angular.module('keywordAnalyticApp', ['angularFileUpload']);
+
+  app.config(["$httpProvider", function ($httpProvider) {
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  }]);
+
+  app.controller('UploadCtrl', ['$scope', '$upload', '$log', function ($scope, $upload, $log) {
+    $scope.file = null;
+
+    $scope.statusMaster = {
+      idle: 'Idle',
+      uploading: 'Uploading',
+      build: 'Building report',
+      done: 'Done',
+      error: 'Error'
+    };
+
+    $scope.progress = {
+      isUploading: false,
+      uploadProgress: 0,
+      status: $scope.statusMaster.idle
+    };
+
+    $scope.fileChange = function (files, event) {
+      // Maybe useful in the future
+    };
+
+    $scope.upload = function (file) {
+      $scope.progress.isUploading = true;
+      $scope.progress.status = $scope.statusMaster.uploading;
+      $scope.progress.uploadProgress = 0;
+
+      $upload.upload({
+        url: '/keyword_data_collect',
+        file: file
+      })
+      .progress(function (evt) {
+        $scope.progress.uploadProgress = parseInt(100.0 * evt.loaded / evt.total);
+
+        if ($scope.progress.uploadProgress >= 100) {
+          $scope.progress.status = $scope.statusMaster.build;
+        }
+      })
+      .success(function (resp) {
+        $scope.progress.status = $scope.statusMaster.done;
+      })
+      .error(function (err) {
+        $scope.progress.status = $scope.statusMaster.error;
+        $log.error(err);
+      });
+    };
+  }]);
+</script>
