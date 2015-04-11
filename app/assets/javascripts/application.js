@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-// require turbolinks
 //= require bootstrap-sprockets
+//= require ng-file-upload-bower-3.2.4/angular-file-upload-shim
+//= require ng-file-upload-bower-3.2.4/angular-file-upload
 //= require_tree .
