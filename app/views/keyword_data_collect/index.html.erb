@@ -31,7 +31,8 @@
       <div class="progress-bar" role="progressbar"
             ng-class="{'progress-bar-info': progress.status === statusMaster.uploading || progress.status === statusMaster.build, 'progress-bar-success': progress.status === statusMaster.done, 'progress-bar-danger': progress.status === statusMaster.error}"
             ng-style="{width: progress.uploadProgress + '%'}">
-        <span>{{progress.uploadProgress}}% {{progress.status}}</span>
+        <span ng-show="progress.status === statusMaster.uploading">{{progress.uploadProgress}}% {{progress.status}}</span>
+        <span ng-show="progress.status !== statusMaster.uploading">{{progress.status}}</span>
       </div>
     </div>
 
