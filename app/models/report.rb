@@ -27,7 +27,7 @@ class Report < ActiveRecord::Base
         search_result_obj.non_ads_count = result[:non_ads_count]
         search_result_obj.total_link = result[:link_count]
         search_result_obj.keyword_result = result[:total_search_result]
-        search_result_obj.html_code = result[:html]
+        search_result_obj.html_code = result[:html].force_encoding('iso-8859-1').encode('utf-8')
 
         search_result_obj.save
 
