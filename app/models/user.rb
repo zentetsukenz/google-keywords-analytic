@@ -2,6 +2,8 @@ require 'scrypt'
 
 class User < ActiveRecord::Base
 
+  has_many :reports, dependent: :destroy
+
   validates :username, :password, presence: true
   validates :username, uniqueness: true
 

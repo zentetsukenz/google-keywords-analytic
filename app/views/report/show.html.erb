@@ -1,0 +1,116 @@
+<!-- This page will run very slow when there are many keywords. -->
+<!-- TODO: Use infnite scroll to handle many data -->
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+  <% @report.keywords.order(name: :asc).each do |keyword| %>
+    <div class="panel panel-info">
+      <div class="panel-heading" role="tab" id="heading<%= keyword.id %>">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= keyword.id %>" aria-expanded="true" aria-controls="collapse<%= keyword.id %>">
+            <%= keyword.name %>
+          </a>
+        </h4>
+      </div>
+      <div id="collapse<%= keyword.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= keyword.id %>">
+        <div class="panel-body">
+
+          <div class="row">
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="badge"><%= keyword.search_result.top_ads_count %></span>
+                  Top ads count
+                </li>
+                <li class="list-group-item">
+                  <span class="badge"><%= keyword.search_result.right_ads_count %></span>
+                  Right ads count
+                </li>
+                <li class="list-group-item">
+                  <span class="badge"><%= keyword.search_result.total_ads_count %></span>
+                  Total ads count
+                </li>
+                <li class="list-group-item">
+                  <span class="badge"><%= keyword.search_result.non_ads_count %></span>
+                  Non-ads count
+                </li>
+                <li class="list-group-item">
+                  <span class="badge"><%= keyword.search_result.total_link %></span>
+                  Total link count
+                </li>
+                <li class="list-group-item">
+                  <%= keyword.search_result.keyword_result %>
+                </li>
+              </ul>
+
+              <p>
+                <small><em><a href="/report/view_html/<%= keyword.search_result.id %>" target="_blank">View original page</a></em></small>
+              </p>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="panel panel-default panel-report-url">
+                    <div class="panel-heading text-center">Top ads urls</div>
+
+                    <!-- Table -->
+                    <table class="table">
+                      <tbody>
+                        <% keyword.search_result.search_result_urls.where(url_type_id: UrlType::TOP_ADS_ID).each do |url| %>
+                          <tr>
+                            <td><%= url.url %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="col-xs-12">
+                  <div class="panel panel-default panel-report-url">
+                    <div class="panel-heading text-center">Right ads urls</div>
+
+                    <!-- Table -->
+                    <table class="table">
+                      <tbody>
+                        <% keyword.search_result.search_result_urls.where(url_type_id: UrlType::RIGHT_ADS_ID).each do |url| %>
+                          <tr>
+                            <td><%= url.url %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>                
+                </div>
+
+                <div class="col-xs-12">
+                  <div class="panel panel-default panel-report-url">
+                    <div class="panel-heading text-center">Non ads urls</div>
+
+                    <!-- Table -->
+                    <table class="table">
+                      <tbody>
+                        <% keyword.search_result.search_result_urls.where(url_type_id: UrlType::NON_ADS_ID).each do |url| %>
+                          <tr>
+                            <td><%= url.url %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>                
+                </div>
+              </div>
+              
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
