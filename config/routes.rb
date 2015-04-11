@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # Report
   get 'report' => 'report#index'
   get 'report/:id' => 'report#show'
+  get 'report/view_html/:id' => 'report#show_html'
   delete 'report/:id' => 'report#delete'
   
   # Keyword analyze

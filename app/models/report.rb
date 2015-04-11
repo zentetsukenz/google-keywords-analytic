@@ -4,6 +4,8 @@ class Report < ActiveRecord::Base
 
   belongs_to :user
 
+  has_many :keywords, dependent: :destroy
+
   def build_keywords_report(input_file)
 
     keywords = get_keywords input_file
