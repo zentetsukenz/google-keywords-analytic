@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Report</th>
+          <th class="hidden-xs col-sm-3">Create time</th>
+          <th class="col-xs-1"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% if @reports.length > 0 %>
+
+          <% @reports.each do |report| %>
+            <tr>
+              <td><a href="/report/<%= report.id %>"><%= report.name %></a></td>
+              <td class="hidden-xs col-sm-3"><%= report.created_at.localtime.strftime('%Y-%m-%d %H:%M:%S') %></td>
+              <td class="text-center"><a href="/report/<%= report.id %>" data-method="delete" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a></td>
+            </tr>
+          <% end %>
+
+        <% else %>
+
+          <tr>
+            <td colspan="99" class="text-center"><em>You haven't create any report yet, <a href="/keyword_data_collect">create one.</a></em></td>
+          </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
