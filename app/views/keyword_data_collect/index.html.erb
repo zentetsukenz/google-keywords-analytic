@@ -36,6 +36,21 @@
       </div>
     </div>
 
+    <div class="row">
+      <div ng-repeat="report in reports | orderBy : ['created_at'] : true : limitTo : 12">
+        <a ng-href="/report/{{ report.id }}">
+          <div class="col-xs-4">
+            <div class="panel" ng-class="{'panel-success': report.isNew, 'panel-default': !report.isNew}">
+              <div class="panel-body">
+                <p>{{ report.name }} <span class="label label-info" ng-show="report.isNew">Latest</span></p>
+                <small><em>{{ report.created_at | date : 'medium' }}</em></small>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -47,6 +62,8 @@
   }]);
 
   app.controller('UploadCtrl', ['$scope', '$upload', '$log', function ($scope, $upload, $log) {
+
+    $scope.reports = [];
     $scope.file = null;
 
     $scope.statusMaster = {
@@ -84,6 +101,14 @@
         }
       })
       .success(function (resp) {
+        var newReport = resp.report
+        newReport.isNew = true;
+
+        if ($scope.reports.length > 0) {
+          $scope.reports[$scope.reports.length - 1].isNew = false;
+        }
+
+        $scope.reports.push(newReport);
         $scope.progress.status = $scope.statusMaster.done;
       })
       .error(function (err) {

@@ -8,7 +8,8 @@ class KeywordDataCollectController < ApplicationController
 
   def upload
 
-    report = Report.new user: @current_user, name: DateTime.now.strftime('%Y-%m-%d %H:%M:%S')
+    # report = Report.new user: @current_user, name: "#{params[:file].original_filename} - #{DateTime.now.strftime('%Y-%m-%d %H:%M:%S')}"
+    report = Report.new user: @current_user, name: "#{params[:file].original_filename}"
     report.build_keywords_report params[:file].tempfile
 
     render json: {report: report}, status: :ok
