@@ -6,4 +6,8 @@ class KeywordDataCollectController < ApplicationController
   def index
   end
 
+  def upload
+    render json: {}, status: :ok
+  end
+
 end
