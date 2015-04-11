@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  keyword_id: 
+  top_ads_count: 1
+  right_ads_count: 1
+  total_ads_count: 1
+  non_ads_count: 1
+  total_link: 1
+  keyword_result: MyString
+  html_code: MyText
+
+two:
+  keyword_id: 
+  top_ads_count: 1
+  right_ads_count: 1
+  total_ads_count: 1
+  non_ads_count: 1
+  total_link: 1
+  keyword_result: MyString
+  html_code: MyText

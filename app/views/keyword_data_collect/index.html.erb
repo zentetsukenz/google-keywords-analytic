@@ -1,0 +1,120 @@
+<div ng-app="keywordAnalyticApp">
+  <div ng-controller="UploadCtrl">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+          <h3 class="panel-title text-center">Upload keywords</h3>
+      </div>
+      <div class="panel-body">
+
+        <form role="form">
+          <fieldset>
+            <div class="form-group">
+              <input  class="form-control" name="file" type="file"
+                      ng-file-select
+                      ng-model="file"
+                      ng-file-change="fileChange($files, $event)"
+                      accept=".csv">
+              <small class="help-block"><span class="text-danger">*</span> Accepts CSV file only</small>
+              <small class="help-block"><span class="text-danger">*</span> CSV file can contains 1 - 1000 words</small>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" ng-disabled="!file || progress.isUploading" ng-click="upload(file)">
+              <i class="glyphicon glyphicon-cloud-upload"></i> Upload
+            </button>
+          </fieldset>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="progress" ng-show="progress.isUploading">
+      <div class="progress-bar" role="progressbar"
+            ng-class="{'progress-bar-info': progress.status === statusMaster.uploading || progress.status === statusMaster.build, 'progress-bar-success': progress.status === statusMaster.done, 'progress-bar-danger': progress.status === statusMaster.error}"
+            ng-style="{width: progress.uploadProgress + '%'}">
+        <span ng-show="progress.status === statusMaster.uploading">{{progress.uploadProgress}}% {{progress.status}}</span>
+        <span ng-show="progress.status !== statusMaster.uploading">{{progress.status}}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div ng-repeat="report in reports | orderBy : ['created_at'] : true : limitTo : 12">
+        <a ng-href="/report/{{ report.id }}">
+          <div class="col-xs-4">
+            <div class="panel" ng-class="{'panel-success': report.isNew, 'panel-default': !report.isNew}">
+              <div class="panel-body">
+                <p>{{ report.name }} <span class="label label-info" ng-show="report.isNew">Latest</span></p>
+                <small><em>{{ report.created_at | date : 'medium' }}</em></small>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  var app = angular.module('keywordAnalyticApp', ['angularFileUpload']);
+
+  app.config(["$httpProvider", function ($httpProvider) {
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  }]);
+
+  app.controller('UploadCtrl', ['$scope', '$upload', '$log', function ($scope, $upload, $log) {
+
+    $scope.reports = [];
+    $scope.file = null;
+
+    $scope.statusMaster = {
+      idle: 'Idle',
+      uploading: 'Uploading',
+      build: 'Building report',
+      done: 'Done',
+      error: 'Error'
+    };
+
+    $scope.progress = {
+      isUploading: false,
+      uploadProgress: 0,
+      status: $scope.statusMaster.idle
+    };
+
+    $scope.fileChange = function (files, event) {
+      $scope.progress.isUploading = false;
+    };
+
+    $scope.upload = function (file) {
+      $scope.progress.isUploading = true;
+      $scope.progress.status = $scope.statusMaster.uploading;
+      $scope.progress.uploadProgress = 0;
+
+      $upload.upload({
+        url: '/keyword_data_collect',
+        file: file
+      })
+      .progress(function (evt) {
+        $scope.progress.uploadProgress = parseInt(100.0 * evt.loaded / evt.total);
+
+        if ($scope.progress.uploadProgress >= 100) {
+          $scope.progress.status = $scope.statusMaster.build;
+        }
+      })
+      .success(function (resp) {
+        var newReport = resp.report
+        newReport.isNew = true;
+
+        if ($scope.reports.length > 0) {
+          $scope.reports[$scope.reports.length - 1].isNew = false;
+        }
+
+        $scope.reports.push(newReport);
+        $scope.progress.status = $scope.statusMaster.done;
+      })
+      .error(function (err) {
+        $scope.progress.status = $scope.statusMaster.error;
+        $log.error(err);
+      });
+    };
+  }]);
+</script>

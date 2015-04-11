@@ -2,12 +2,17 @@
   <div class="container">
 
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Google Keywords Analytic</a>
+      <a class="navbar-brand" href="/"><span class="text-info">Google Keywords Analytic</span></a>
     </div>
 
     <div class="navbar-right collapse navbar-collapse">
       <ul class="nav navbar-nav">
-          <li><a href="/authentication" data-method="delete"><i class="glyphicon glyphicon-log-out"></i> Sign out</a></li>
+        <li class="<%= controller_name == 'keyword_data_collect' ? 'active' : '' %>">
+          <a href="/keyword_data_collect"><i class="text-info glyphicon glyphicon-cloud-upload"></i> Upload keywords</a>
+        </li>
+        <li>
+          <a href="/authentication" data-method="delete"><i class="text-info glyphicon glyphicon-log-out"></i> Sign out</a>
+        </li>
       </ul>
     </div>
   </div>
