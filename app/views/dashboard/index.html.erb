@@ -1,2 +1,59 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<div class="page-header">
+  <h1>Welcome
+    <small>
+      <span class="text-success"><i class="glyphicon glyphicon-heart"></i> <%= @current_user.username %></span>
+    </small>
+  </h1>
+</div>
+
+<div class="row">
+
+  <a href="/keyword_data_collect">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <h1><i class="glyphicon glyphicon-cloud-upload"></i></h1>
+          <h3>Upload keywords</h3>
+          <h5><em>Upload your keywords csv file</em></h5>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="/report">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <h1><i class="glyphicon glyphicon-book"></i></h1>
+          <h3>Reports</h3>
+          <h5><em>Examine your past reports</em></h5>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="/utility">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <h1><i class="glyphicon glyphicon-th"></i></h1>
+          <h3>Utilities</h3>
+          <h5><em>Use our tools to analyze your data</em></h5>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="/authentication" data-method="delete">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <h1><i class="glyphicon glyphicon-log-out"></i></h1>
+          <h3>Sign out</h3>
+          <h5><em>Come back soon</em></h5>
+        </div>
+      </div>
+    </div>
+  </a>
+  
+</div>
