@@ -1,0 +1,26 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+      <h3 class="panel-title text-center">Word URL ADs</h3>
+  </div>
+  <div class="panel-body">
+
+    <% flash.each do |name, msg| -%>
+      <div class="alert alert-danger alert-dismissable">
+        <%= msg %>
+      </div>
+    <% end -%>
+
+    <%= form_tag('/utility/word-url-ads', method: 'post', role: 'form') do %>
+      <fieldset>
+        <div class="form-group">
+          <input  class="form-control" name="keyword" type="text">
+          <small class="help-block">Please enter your keyword</small>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+          <i class="glyphicon glyphicon-ok"></i> Yup! that's it
+        </button>
+      </fieldset>
+    <% end %>
+
+  </div>
+</div>
