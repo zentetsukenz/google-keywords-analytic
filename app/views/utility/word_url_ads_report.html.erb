@@ -1,0 +1,27 @@
+<div class="page-header">
+  <h1>Word URL ADs
+    <small>
+      <span class="text-info">keyword:</span> <span class="text-success"><em><%= @keyword %></em></span>
+    </small>
+    <a class="btn btn-default pull-right" href="/utility/word-url-ads">
+      <i class="glyphicon glyphicon-arrow-left"></i> Back
+    </a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <dl class="dl-horizontal">
+      <dt>Found</dt>
+      <dd><%= @report.length %> url(s)</dd>
+      <dt>URL(s)</dt>
+      <dd>
+        <ul class="list-unstyled">
+          <% @report.each do |report| %>
+            <li><%= report.url %></li>
+          <% end %>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</div>

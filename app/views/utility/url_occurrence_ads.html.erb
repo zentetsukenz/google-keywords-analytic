@@ -1,0 +1,30 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+      <h3 class="panel-title text-center">URL occurrence (ADs)</h3>
+  </div>
+  <div class="panel-body">
+
+    <% flash.each do |name, msg| -%>
+      <div class="alert alert-danger alert-dismissable">
+        <%= msg %>
+      </div>
+    <% end -%>
+
+    <%= form_tag('/utility/url-occurrence-ads', method: 'post', role: 'form') do %>
+      <fieldset>
+        <div class="form-group">
+          <!-- 
+            Use input type text because input type url blocks some of the occurrence url 
+            eg. no http:// url, no www url
+          -->
+          <input  class="form-control" name="url" type="text">
+          <small class="help-block">Please enter your url</small>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+          <i class="glyphicon glyphicon-tag"></i> Let's rock!
+        </button>
+      </fieldset>
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>URL occurrence ADs
+    <a class="btn btn-default pull-right" href="/utility/url-occurrence-ads">
+      <i class="glyphicon glyphicon-arrow-left"></i> Back
+    </a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <dl class="dl-horizontal">
+      <dt>Url</dt>
+      <dd><%= @url %></dd>
+      <dt>Occurrence</dt>
+      <dd><span class="text-success"><%= @report.length %></span> time(s)</dd>
+      <dt>Keyword(s)</dt>
+      <dd>
+        <ul class="list-unstyled">
+          <% @report.each do |report| %>
+            <li><%= report.search_result.keyword.name %></li>
+          <% end %>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+</div>
