@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
-  "private": true,
+  "name": "google-keywords-analytic-ui",
+  "private": false,
   "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "description": "A Google Keywords Analytic tools",
+  "repository": "https://github.com/zentetsukenz/google-keywords-analytic",
   "license": "MIT",
   "devDependencies": {
     "karma": "~0.10",
