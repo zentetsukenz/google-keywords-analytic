@@ -6,73 +6,93 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>Google Keywords Analytic</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
   <link rel="stylesheet" href="app.css">
+
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
-<body>
 
-  <md-toolbar layout="row">
-    <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-      <md-icon md-svg-icon="action:reorder"></md-icon>
-    </md-button>
-    <h1>Angular Material - Starter App</h1>
-  </md-toolbar>
+<body ng-controller="AppCtrl as app" layout="row">
 
-  <div flex layout="row">
+  <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-sm')">
 
-      <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
-        <md-list>
-          <md-list-item ng-repeat="it in ul.users">
-              <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
-                <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-                {{it.name}}
-              </md-button>
-          </md-list-item>
-        </md-list>
-      </md-sidenav>
+    <md-toolbar class="md-whiteframe-z1">
+      <h1>Google Keywords Analytic</h1>
+    </md-toolbar>
 
-      <md-content flex id="content">
-        <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-        <h2>{{ul.selected.name}}</h2>
-        <p>{{ul.selected.content}}</p>
+    <md-list>
 
-        <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
-          <md-icon md-svg-icon="share"></md-icon>
+      <md-list-item>
+        <md-button ui-sref="upload" ui-sref-active="selected">
+          <md-icon md-svg-icon="file:cloud_upload" class="avatar"></md-icon>
+          Upload keywords
         </md-button>
-      </md-content>
+      </md-list-item>
+
+      <md-list-item>
+        <md-button ui-sref="report" ui-sref-active="selected">
+          <md-icon md-svg-icon="action:description" class="avatar"></md-icon>
+          Reports
+        </md-button>
+      </md-list-item>
+
+      <md-list-item>
+        <md-button ui-sref="utility" ui-sref-active="selected">
+          <md-icon md-svg-icon="action:view_module" class="avatar"></md-icon>
+          Utilities
+        </md-button>
+      </md-list-item>
+
+      <md-list-item>
+        <md-button ng-click="signOut()">
+          <md-icon md-svg-icon="action:exit_to_app" class="avatar"></md-icon>
+          Sign out
+        </md-button>
+      </md-list-item>
+
+    </md-list>
+
+  </md-sidenav>
+
+  <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z1">
+
+    <!-- <md-toolbar layout="row" class="md-whiteframe-z1">
+      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+        <md-icon md-svg-icon="menu" ></md-icon>
+      </md-button>
+      <h1>Google Keywords Analytic</h1>
+    </md-toolbar> -->
+
+    <md-content flex id="content">
+
+      <ui-view></ui-view>
+
+    </md-content>
 
   </div>
-
-  <!-- <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul> -->
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <!-- <div ng-view></div> -->
-
-  <!-- <div>Angular seed app: v<span app-version></span></div> -->
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-aria/angular-aria.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
+
   <script src="app.js"></script>
   <script src="view1/view1.js"></script>
   <script src="view2/view2.js"></script>
+
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
