@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="uiApp" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,63 +18,48 @@
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 
-<body ng-controller="AppCtrl as app" layout="row">
+<body layout="row" ng-controller="AppCtrl as app">
 
   <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
-                md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-sm')">
+                md-component-id="left">
 
-    <md-toolbar class="md-whiteframe-z1">
-      <h1>Google Keywords Analytic</h1>
+    <md-toolbar layout="row" class="md-whiteframe-z1">
+      <md-button class="menu" ng-click="app.toggleList()" aria-label="Show Menus">
+        <md-icon md-svg-icon="action:reorder" ></md-icon>
+      </md-button>
+      <h1>Menus</h1>
     </md-toolbar>
 
     <md-list>
-
       <md-list-item>
-        <md-button ui-sref="upload" ui-sref-active="selected">
-          <md-icon md-svg-icon="file:cloud_upload" class="avatar"></md-icon>
-          Upload keywords
-        </md-button>
+          <md-button>
+            <md-icon md-svg-icon="action:reorder" class="avatar"></md-icon>
+            Hi
+          </md-button>
       </md-list-item>
-
-      <md-list-item>
-        <md-button ui-sref="report" ui-sref-active="selected">
-          <md-icon md-svg-icon="action:description" class="avatar"></md-icon>
-          Reports
-        </md-button>
-      </md-list-item>
-
-      <md-list-item>
-        <md-button ui-sref="utility" ui-sref-active="selected">
-          <md-icon md-svg-icon="action:view_module" class="avatar"></md-icon>
-          Utilities
-        </md-button>
-      </md-list-item>
-
-      <md-list-item>
-        <md-button ng-click="signOut()">
-          <md-icon md-svg-icon="action:exit_to_app" class="avatar"></md-icon>
-          Sign out
-        </md-button>
-      </md-list-item>
-
     </md-list>
 
   </md-sidenav>
 
-  <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z1">
 
-    <!-- <md-toolbar layout="row" class="md-whiteframe-z1">
-      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-        <md-icon md-svg-icon="menu" ></md-icon>
+  <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+
+    <md-toolbar layout="row" class="md-whiteframe-z1">
+      <md-button class="menu" ng-click="app.toggleList()" aria-label="Show Menus">
+        <md-icon md-svg-icon="action:reorder" ></md-icon>
       </md-button>
       <h1>Google Keywords Analytic</h1>
-    </md-toolbar> -->
+    </md-toolbar>
 
     <md-content flex id="content">
+      <!-- <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+      <h2>{{ul.selected.name}}</h2>
+      <p>{{ul.selected.content}}</p>
 
-      <ui-view></ui-view>
-
+      <md-button class="contact" md-no-ink ng-click="ul.showContactOptions($event)" aria-label="Contact User">
+        <md-tooltip>Contact {{ ul.selected.name }}</md-tooltip>
+        <md-icon md-svg-icon="share"></md-icon>
+      </md-button> -->
     </md-content>
 
   </div>

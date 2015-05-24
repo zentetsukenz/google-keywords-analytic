@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('uiApp', [
   'ngAria',
   'ngMaterial',
   'ui.router',
@@ -34,6 +34,14 @@ angular.module('myApp', [
 //   $routeProvider.otherwise({redirectTo: '/view1'});
 // }])
 
-.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log) {
+.controller('AppCtrl', function ($mdSidenav, $mdBottomSheet, $log, $q) {
+  this.toggleList = function () {
+    var pending = $mdBottomSheet.hide() || $q.when(true);
 
+    $log.debug('hi');
+
+    pending.then(function(){
+      $mdSidenav('left').toggle();
+    });
+  };
 });

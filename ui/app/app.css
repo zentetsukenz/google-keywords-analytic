@@ -28,13 +28,13 @@ md-list .md-button {
   text-align: left;
   width: 100%;
 }
-md-list .md-button.selected {
-  color: #03a9f4;
-}
+  md-list .md-button.selected {
+    color: #03a9f4;
+  }
 
-md-sidenav  md-list {
-  padding: 0px 0px 8px 0px;
-}
+  md-sidenav  md-list {
+    padding: 0px 0px 8px 0px;
+  }
 
 
 /* Primary content area */
@@ -49,7 +49,7 @@ md-sidenav  md-list {
   padding-top: 5px;
 }
 
-#content .md-button.share {
+#content .md-button.contact {
   background-color: transparent;
   border: none;
   width: 48px;
@@ -57,14 +57,14 @@ md-sidenav  md-list {
   margin: 8px auto 16px 0;
   position: absolute;
   top: 10px;
-  right: 25px;
+  right: 40px;
 }
 
 #content md-icon.avatar {
   margin-top: 10px;
 }
 
-#content .md-button.share > md-icon {
+#content .md-button.contact > md-icon {
   fill:black;
   width:36px;
   height:36px;
@@ -76,7 +76,7 @@ md-button.menuBtn > md-icon {
   height:24px;
 }
 
-#content .md-button.share:active > md-icon {
+#content .md-button.contact:active > md-icon {
   background-color: #dadada;
   border-radius: 75%;
   padding:4px;
@@ -106,7 +106,7 @@ md-toolbar h1 {
   position: relative;
   width: 128px;
   height: 128px;
-  border: none;
+  border: 1px solid #ddd;
   border-radius: 50%;
   display: inline-block;
   overflow: hidden;
