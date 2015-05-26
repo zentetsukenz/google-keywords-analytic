@@ -24,19 +24,25 @@
                 md-component-id="left">
 
     <md-toolbar layout="row" class="md-whiteframe-z1">
-      <md-button class="menu" ng-click="app.toggleList()" aria-label="Show Menus">
-        <md-icon md-svg-icon="action:reorder" ></md-icon>
-      </md-button>
-      <h1>Menus</h1>
+      <h1>GKA</h1>
     </md-toolbar>
 
     <md-list>
+
       <md-list-item>
-          <md-button>
-            <md-icon md-svg-icon="action:reorder" class="avatar"></md-icon>
-            Hi
-          </md-button>
+        <md-button>
+          <md-icon md-svg-icon="action:view_module" class="avatar"></md-icon>
+          Dashbaord
+        </md-button>
       </md-list-item>
+
+      <md-list-item>
+        <md-button>
+          <md-icon md-svg-icon="file:cloud_upload" class="avatar"></md-icon>
+          Upload
+        </md-button>
+      </md-list-item>
+
     </md-list>
 
   </md-sidenav>
@@ -45,21 +51,14 @@
   <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
 
     <md-toolbar layout="row" class="md-whiteframe-z1">
-      <md-button class="menu" ng-click="app.toggleList()" aria-label="Show Menus">
-        <md-icon md-svg-icon="action:reorder" ></md-icon>
+      <md-button class="menu md-icon-button" ng-click="app.toggleList()" aria-label="Show Menus">
+        <md-icon md-svg-icon="action:reorder"></md-icon>
       </md-button>
       <h1>Google Keywords Analytic</h1>
     </md-toolbar>
 
     <md-content flex id="content">
-      <!-- <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-      <h2>{{ul.selected.name}}</h2>
-      <p>{{ul.selected.content}}</p>
-
-      <md-button class="contact" md-no-ink ng-click="ul.showContactOptions($event)" aria-label="Contact User">
-        <md-tooltip>Contact {{ ul.selected.name }}</md-tooltip>
-        <md-icon md-svg-icon="share"></md-icon>
-      </md-button> -->
+      <ui-view></ui-view>
     </md-content>
 
   </div>

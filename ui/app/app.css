@@ -1,26 +1,26 @@
 html, body {
   font-family: 'Roboto', sans-serif;
-  font-size:14px;
-  height:100%;
+  font-size: 14px;
+  height: 100%;
   margin: 0px;
   padding: 0px;
 }
 
 /* Toolbar area */
 
-.menu {
+.md-icon-button.menu {
   background-color: transparent;
   border: none;
-  height: 38px;
-  margin: 16px;
+  height: auto;
+  margin: 10px 16px;
   width: 36px;
 }
+
+/* Sidenav area */
 
 md-toolbar h1 {
   margin: auto;
 }
-
-/* Sidenav area */
 
 md-list .md-button {
   color: inherit;
@@ -28,13 +28,13 @@ md-list .md-button {
   text-align: left;
   width: 100%;
 }
-  md-list .md-button.selected {
-    color: #03a9f4;
-  }
+md-list .md-button.selected {
+  color: #03a9f4;
+}
 
-  md-sidenav  md-list {
-    padding: 0px 0px 8px 0px;
-  }
+md-sidenav  md-list {
+  padding: 0px 0px 8px 0px;
+}
 
 
 /* Primary content area */
@@ -106,8 +106,8 @@ md-toolbar h1 {
   position: relative;
   width: 128px;
   height: 128px;
-  border: 1px solid #ddd;
-  border-radius: 50%;
+  /*border: 0px solid #ddd;*/
+  /*border-radius: 50%;*/
   display: inline-block;
   overflow: hidden;
   margin: 0px;

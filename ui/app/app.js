@@ -38,9 +38,7 @@ angular.module('uiApp', [
   this.toggleList = function () {
     var pending = $mdBottomSheet.hide() || $q.when(true);
 
-    $log.debug('hi');
-
-    pending.then(function(){
+    pending.then(function () {
       $mdSidenav('left').toggle();
     });
   };
